@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+
+	<persistence-unit name="ProjetoAcervo">
+		<class>Model.Material</class>
+		<class>Model.Usuario</class>
+		<class>Model.UsuarioLogado</class>
+		
+		<properties> <!-- Propriedades para comunicacao entre o Java e o MySQL -->
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/acervo?useSSL=false"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+			<property name="hibernate.connection.username" value="root"/>
+			<property name="hibernate.connection.password" value=""/>
+			<property name="hibernate.format_sql" value="false"/>
+			<property name="hibernate.hbm2ddl.auto" value="update"/> <!-- Usada para executar comandos como create/alter table etc. -->
+		</properties>
+
+	</persistence-unit>
+
+</persistence>

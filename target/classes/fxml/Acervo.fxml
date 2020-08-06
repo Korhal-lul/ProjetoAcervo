@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Acervo">
+    <children>
+        <Button fx:id="buttonSair" layoutX="48.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #ffd6d6; -fx-background-image: url(/icons/sair.png)"/>
+        
+        <Button fx:id="buttonCadastrarMaterial" visible="false" layoutX="300.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-image: url(/icons/criar_material.png)"/>
+        <Button fx:id="buttonUsuario" visible="false" layoutX="344.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-image: url(/icons/usuario.png)"/>
+        <Button fx:id="buttonRelatorios" layoutX="388.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-image: url(/icons/relatorio.png)"/>
+        <Button fx:id="buttonQrCode" layoutX="432.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="84.0" style="-fx-background-image: url(/icons/QRcode.png)"/>
+        <Button fx:id="buttonEmprestar" disable="true" layoutX="540.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="111.0" text="Emprestar" style="-fx-background-color: #adffc3; ">
+            <font>
+                <Font name="Calibri" size="16.0" />
+            </font>
+        </Button>
+        <ScrollPane hmax="0.0" layoutX="48.0" layoutY="131.0" prefHeight="303.0" prefWidth="605.0">
+            <content>
+                <TableView fx:id="tableViewMateriais" disable="true" prefHeight="300.0" prefWidth="602.0">
+                    <columns>
+                        <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="Código" />
+                        <TableColumn fx:id="tableColumnDescricao" prefWidth="75.0" text="Descrição" />
+                        <TableColumn fx:id="tableColumnTipo" prefWidth="75.0" text="Tipo" />
+                        <TableColumn fx:id="tableColumnQuantidade" prefWidth="75.0" text="Quantidade atual" />
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
+            </content>
+        </ScrollPane>
+        <Label layoutX="53.0" layoutY="93.0" prefHeight="26.0" prefWidth="462.0" text="Selecione na tabela os itens que deseja emprestar:">
+            <font>
+                <Font name="Calibri" size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="labelUsuario" alignment="CENTER" layoutX="53.0" layoutY="67.0" text="Olá, ">
+            <font>
+                <Font name="Calibri" size="18.0" />
+            </font>
+        </Label>
+        <Button fx:id="buttonDesmarcarTudo" disable="true" layoutX="514.0" layoutY="450.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="137.0" text="Desmarcar tudo" />
+        <Label layoutX="48.0" layoutY="440.0" prefHeight="52.0" prefWidth="322.0" text="*Pressione a tecla Ctrl ao selecionar para marcar mais de uma linha" wrapText="true">
+            <font>
+                <Font name="Calibri" size="16.0" />
+            </font>
+        </Label>
+      <Button fx:id="buttonExcluir" visible="false" disable="true" layoutX="426.0" layoutY="450.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: #ff9e9e; -fx-background-image: url(/icons/excluir.png)"/>
+      <Button fx:id="buttonEditar" visible="false" disable="true" layoutX="470.0" layoutY="450.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: #a3b1ff; -fx-background-image: url(/icons/editar.png)"/>
+     
+	  <TextField fx:id="textFieldBuscar" layoutX="440.0" layoutY="85.0" prefHeight="34.0" prefWidth="166.0" promptText="Buscar por descrição">
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+      </TextField>
+      <Button fx:id="buttonBuscar" layoutX="619.0" layoutY="85.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-image: url(/icons/busca.png)">
+     	 <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>

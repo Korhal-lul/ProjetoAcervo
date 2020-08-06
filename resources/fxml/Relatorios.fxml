@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Relatorios">
+    <children>
+        <Button fx:id="buttonSair" layoutX="32.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="84.0" style="-fx-background-image: url(/icons/voltar.png)"/>
+        <ScrollPane hmax="0.0" layoutX="32.0" layoutY="125.0" prefHeight="312.0" prefWidth="343.0">
+            <content>
+                <TableView fx:id="tableViewRelatorios" prefHeight="310.0" prefWidth="341.0">
+                    <columns>
+                        <TableColumn fx:id="tableColumnRelatorios" prefWidth="75.0" text="Arquivo do relatório" />
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
+            </content>
+        </ScrollPane>
+        <Button fx:id="buttonDesmarcar" disable="true" layoutX="267.0" layoutY="69.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="108.0" text="Desmarcar" />
+        <Button fx:id="buttonExcluir" visible="false" disable="true" layoutX="151.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: #ff9e9e; -fx-background-image: url(/icons/excluir.png)" />
+        <Button fx:id="buttonAbrirDiretorio" visible="false" layoutX="200.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="84.0" style="-fx-background-color: #fffb8f; -fx-background-image: url(/icons/pasta.png)"/>
+		<Button fx:id="buttonAbrir" disable="true" layoutX="291.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="84.0" style="-fx-background-color: #8cf5ad; -fx-background-image: url(/icons/abrir.png)"/>
+
+        <TextField fx:id="textFieldBuscar" layoutX="32.0" layoutY="69.0" prefHeight="34.0" prefWidth="160.0" promptText="Buscar relatório">
+            <font>
+                <Font name="Calibri" size="16.0" />
+            </font>
+        </TextField>
+        <Button fx:id="buttonBuscar" layoutX="203.0" layoutY="69.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-image: url(/icons/busca.png)">
+            <font>
+                <Font name="Calibri" size="16.0" />
+            </font>
+        </Button>
+      <Button fx:id="buttonDevolver" disable="true" layoutX="97.0" layoutY="450.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="200.0" text="Marcar como devolvido" />
+    </children>
+</AnchorPane>

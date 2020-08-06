@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GerenciarUsuarios">
+    <children>
+        <Button fx:id="buttonSair" layoutX="32.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="84.0" style="-fx-background-image: url(/icons/voltar.png)" />
+
+        <Button fx:id="buttonCadastrarUsuario" layoutX="331.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-image: url(/icons/criar_usuario.png)" />
+        <ScrollPane hmax="0.0" layoutX="32.0" layoutY="131.0" prefHeight="290.0" prefWidth="338.0">
+            <content>
+                <TableView fx:id="tableViewUsuarios" prefHeight="288.0" prefWidth="336.0">
+                    <columns>
+                        <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="Código" />
+                        <TableColumn fx:id="tableColumnNome" prefWidth="75.0" text="Nome de usuário" />
+                        <TableColumn fx:id="tableColumnAdmin" prefWidth="75.0" text="Admin" />
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
+            </content>
+        </ScrollPane>
+        <Button fx:id="buttonDesmarcarTudo" disable="true" layoutX="262.0" layoutY="85.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="108.0" text="Desmarcar tudo" />
+        <Label layoutX="52.0" layoutY="428.0" prefHeight="52.0" prefWidth="310.0" text="*Pressione a tecla Ctrl ao selecionar para marcar mais de uma linha" wrapText="true">
+            <font>
+                <Font name="Calibri" size="16.0" />
+            </font>
+        </Label>
+        <Button fx:id="buttonExcluir" disable="true" layoutX="219.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: #ff9e9e; -fx-background-image: url(/icons/excluir.png)" />
+        <Button fx:id="buttonEditar" disable="true" layoutX="275.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: #a3b1ff; -fx-background-image: url(/icons/editar.png)" />
+
+        <TextField fx:id="textFieldBuscar" layoutX="38.0" layoutY="85.0" prefHeight="34.0" prefWidth="160.0" promptText="Buscar usuário">
+            <font>
+                <Font name="Calibri" size="16.0" />
+            </font>
+        </TextField>
+        <Button fx:id="buttonBuscar" layoutX="203.0" layoutY="85.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-image: url(/icons/busca.png)">
+            <font>
+                <Font name="Calibri" size="16.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>
