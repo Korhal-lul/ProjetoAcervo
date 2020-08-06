@@ -1,3 +1,35 @@
+/*
+* SENAI / CENTROWEG
+* AIPSIN 2019/1
+* MI-66
+* Autor(es): Daniel Schinaider de Oliveira, 
+* 	         Victor Hugo Moresco,
+* 		   	 Braian Costa Zapelini, 
+*            Leonardo Cech, 
+* 	         Gabriel da Costa 
+*
+* Data: 06/08/2020
+* 
+* Classe de processamento e renderização da janela principal
+* 
+* ===============================
+* Alteração
+* 
+* Data: 06/08/2020
+* Responsável: Leonardo Cech
+*
+* Documentação da Classe
+* -------------------------------------------------------
+*
+* ================================
+* Declaração de variáveis
+* 	 executor: Executor       Instância do Objeto da Classe Executor
+* 	      tbl: TableView      Instância do Objeto da Classe TableView
+*      webcam: WebCam         Instância do Objeto da Classe WebCam
+*       panel: WebcamPanel    Instância do Objeto da Classe WebcamPanel
+*   materiais: List<Material> Instância List da Classe Material;
+* ================================
+*/
 package Controller;
 
 import java.awt.Dimension;
@@ -40,6 +72,13 @@ public class Camera extends JFrame implements Runnable, ThreadFactory {
 	private WebcamPanel panel = null;
 
 	/////////////////////////////////////////////////
+	/*
+	Camera(TableView table, List<Material> materialList)
+	retorno: void
+	Parâmetro de entrada: 
+				TableView table, List<Material> materialList
+	objetivo: Acionar a câmera principal conectada à máquina
+	*/
 	
 	public Camera(@SuppressWarnings("rawtypes") TableView table, List<Material> materialList) {
 		
@@ -76,7 +115,11 @@ public class Camera extends JFrame implements Runnable, ThreadFactory {
 	}
 
 	/////////////////////////////////////////////////
-	
+	/*
+	run()
+	retorno: void
+	objetivo: Exêcutar a câmera
+	*/
 	@Override
 	public void run() {
 
@@ -124,7 +167,13 @@ public class Camera extends JFrame implements Runnable, ThreadFactory {
 	}
 	
 	/////////////////////////////////////////////////
-	
+	/*
+	newThread(Runnable r)
+	Parâmetro de entrada:
+					Runnable r
+	retorno: Thread t
+	objetivo: Captura de frames da câmera
+	*/
 	@Override
 	public Thread newThread(Runnable r) {
 		Thread t = new Thread(r, "example-runner");

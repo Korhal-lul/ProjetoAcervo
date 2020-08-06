@@ -1,3 +1,32 @@
+/*
+* SENAI / CENTROWEG
+* AIPSIN 2019/1
+* MI-66
+* Autor(es): Daniel Schinaider de Oliveira, 
+* 	         Victor Hugo Moresco,
+* 		   	 Braian Costa Zapelini, 
+*            Leonardo Cech, 
+* 	         Gabriel da Costa 
+*
+* Data: 06/08/2020
+* 
+* Classe de processamento e renderização da janela principal
+* 
+* ===============================
+* Alteração
+* 
+* Data: 06/08/2020
+* Responsável: Leonardo Cech
+*
+* Documentação da Classe
+* -------------------------------------------------------
+*
+* ================================
+* Declaração de variáveis
+* 
+* ================================
+*/
+
 package Controller;
 
 import java.awt.Desktop;

@@ -1,3 +1,35 @@
+/*
+* SENAI / CENTROWEG
+* AIPSIN 2019/1
+* MI-66
+* Autor(es): Daniel Schinaider de Oliveira, 
+* 	         Victor Hugo Moresco,
+* 		   	 Braian Costa Zapelini, 
+*            Leonardo Cech, 
+* 	         Gabriel da Costa 
+*
+* Data: 06/08/2020
+* 
+* Classe de processamento e renderização da janela principal
+* 
+* ===============================
+* Alteração
+* 
+* Data: 06/08/2020
+* Responsável: Leonardo Cech
+*
+* Documentação da Classe
+* -------------------------------------------------------
+*
+* ================================
+* Declaração de variáveis
+*   usuario: UsuarioLogado
+* directory: String Armazena o diretório do projeto onde os relatórios são criados
+*  fileName: String Armazena o nome do arquivo que será modificado ou acessado
+* 
+* ================================
+*/
+
 package Controller;
 
 import java.io.File;
@@ -33,6 +65,13 @@ public class DatabaseExcel {
 	private static String fileName;
 
 	/////////////////////////////////////////////////
+	/*
+	generate()
+	Parâmetros de entrada:
+				List<MateriaisRetirada> listRetirada
+	Retorno: void
+	Objetivo: Gerar arquivo .xls de relatório
+	*/
 	
 	public void generate(List<MateriaisRetirada> listRetirada) {
 		
@@ -176,8 +215,12 @@ public class DatabaseExcel {
 		
 	}
 	
-	/////////////////////////////////////////////////
-	
+	/////////////////////////////////////////////////	
+	/*
+	getData()
+	Retorno: String
+	Objetivo: Obter a data, hora, minutos e segundos da máquina local
+	*/
 	private static String getData() {
 		
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH'h 'mm'min 'ss' seg'");
@@ -186,7 +229,11 @@ public class DatabaseExcel {
 	}
 	
 	/////////////////////////////////////////////////
-	
+	/*
+	getUsuario()
+	Retorno: UsuarioLogado
+	Objetivo: Obter informação do usuário logado na sessão
+	*/
 	@SuppressWarnings("unchecked")
 	public static UsuarioLogado getUsuario() {
 	    
