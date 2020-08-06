@@ -1070,6 +1070,7 @@ public class Acervo implements Initializable {
 	}
 	
 	/////////////////////////////////////////////////
+	
 	/*
 	desmarcarTudo()
 	Retorno: void
@@ -1085,6 +1086,7 @@ public class Acervo implements Initializable {
 	}
 	
 	/////////////////////////////////////////////////
+	
 	/*
 	habilitarbotoes()
 	retorno: void
