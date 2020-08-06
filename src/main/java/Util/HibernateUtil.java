@@ -21,6 +21,9 @@
 * Documentação da Classe
 * -------------------------------------------------------
 *
+* Data: 06/08/2020
+* Responsável: Braian Costa Zapelini
+*
 * ================================
 * Declaração de variáveis
 * factory : EntityManagerFactory Recebe null somente para instânciar / ser inicializada
