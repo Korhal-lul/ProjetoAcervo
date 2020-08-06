@@ -736,7 +736,7 @@ public class Acervo implements Initializable {
 			        //==============================
 			        // Adicionando componentes na janela de dialogo
 			        
-			       		grid.add(labelItem, 0, 0);
+			       	grid.add(labelItem, 0, 0);
 					grid.add(labelDescricao, 0, 1);
 					grid.add(descricao, 0, 2, 2, 2);
 					grid.add(labelTipo, 0, 4);
