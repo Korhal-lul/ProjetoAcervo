@@ -29,10 +29,10 @@
 * 	 tableColumnAdmin : TableColumn<Usuario, Boolean> Objeto de instância da coluna 'admin' da tabela de usuarios
 * 
 * 	 buttonSair : Button Botão 'sair' que fecha a janela atual e abre a janela 'login'
-* 	 buttonCadastrarUsuario : Button Botão 'cadastrar' que fecha a janela atual e abre a janela 'login'
-* 	 buttonDesmarcarTudo : Button
-* 	 buttonExcluir : Button
-* 	 buttonEditar : Button
+* 	 buttonCadastrarUsuario : Button Botão 'cadastrar' que realiza o cadastro do usuario no banco de dados
+* 	 buttonDesmarcarTudo : Button Botão 'desmarcar' que desmarca todas as opções selecionadas na tabela
+* 	 buttonExcluir : Button Botão 'excluir' que exclui um(s) determinado(s) item(s) da tabela
+* 	 buttonEditar : Button Botão 'editar' que abrirá
 * 	 buttonBuscar : Button
 * 	 textFieldBuscar : TextField
 * ================================
