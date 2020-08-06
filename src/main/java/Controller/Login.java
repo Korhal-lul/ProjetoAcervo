@@ -10,7 +10,7 @@
 *
 * Data: 06/08/2020
 * 
-* Classe de processamento e renderização da janela principal
+* Classe de login do usuário no sistema
 * 
 * ===============================
 * Alteração
@@ -29,9 +29,9 @@
 * ================================
 */
 
-// IMPORTAÇÕES DE BIBLIOTECAS
-
 package Controller;
+
+// IMPORTAÇÕES DE BIBLIOTECAS
 
 import Model.Usuario;
 import Model.UsuarioLogado;

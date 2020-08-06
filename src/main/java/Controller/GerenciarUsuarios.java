@@ -10,7 +10,7 @@
 *
 * Data: 06/08/2020
 * 
-* Classe de processamento e renderização da janela principal
+* Classe de gerenciamento dos usuários
 * 
 * ===============================
 * Alteração
@@ -39,6 +39,8 @@
 */
 
 package Controller;
+
+// IMPORTAÇÕES DE BIBLIOTECAS
 
 import java.io.IOException;
 import java.net.URL;
