@@ -23,7 +23,44 @@
 *
 * ================================
 * Declaração de variáveis
-* 	 tableViewMateriais : TableView<Material> Objeto de instância da tabela de materiais
+*  buttonSair : Button
+*  buttonCadastrarUsuario : Button
+*  buttonDesmarcarTudo : Button
+*  buttonExcluir : Button
+*  buttonEditar : Button
+*  buttonBuscar : Button
+*  textFieldBuscar : Button
+*  
+*  tableViewUsuarios : TableView<Usuario>
+*  tableColumnId : TableColumn<Usuario, Integer>
+*  tableColumnNome : TableColumn<Usuario, String>
+*  tableColumnAdmin : TableColumn<Usuario, Boolean>
+*  
+*  dao : DaoUsuario
+*  daoLog : DaoUsuarioLogado
+*  
+*  usuarioList : List<Usuario>
+*  modelUsuario : Usuario
+*  contarConcluido : int
+*  root : Parent
+*  stage : Stage
+*  nomeTxt : Boolean
+*  senhaTxt : Boolean
+*  
+*   novoUsuario : Usuario
+*   dialogo : Dialog<Usuario> 
+*   fonte : Font 
+*   grid : GridPane
+*   nome : TextField
+*   senha : TextField
+*   admin : CheckBox
+*   hboxAdmin : HBox
+*   labelNome : Label
+*   
+*   
+*   
+*   
+*   
 * ================================
 */
 
