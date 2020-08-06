@@ -10,7 +10,7 @@
 *
 * Data: 06/08/2020
 * 
-* Classe de processamento e renderização da janela principal
+* Classe de login do usuário no sistema
 * 
 * ===============================
 * Alteração
@@ -20,14 +20,18 @@
 *
 * Documentação da Classe
 * -------------------------------------------------------
-*
+* 
 * ================================
 * Declaração de variáveis
-* 
+* textFieldUsuario : TextField 
+* textFieldSenha : TextField
+* buttonEntrar : Button Botão 'entrar' permite ao usuário sua entrada para a página principal do sistema caso não ocorra nenhum erro
 * ================================
 */
 
 package Controller;
+
+// IMPORTAÇÕES DE BIBLIOTECAS
 
 import Model.Usuario;
 import Model.UsuarioLogado;
@@ -193,8 +197,12 @@ public class Login implements Initializable {
     }
 
     /////////////////////////////////////////////////
+    /*
+	setUsuario(UsuarioLogado usuarioLogado)
+	retorno: void
+	objetivo: Define o usuário logado na sessão
+	*/
     
-    // Define o usuario logado na sessao
 	public void setUsuario(UsuarioLogado usuarioLogado) {
    
     	daoLog = new DaoUsuarioLogado();

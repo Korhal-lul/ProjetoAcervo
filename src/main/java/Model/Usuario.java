@@ -1,4 +1,38 @@
+/*
+* SENAI / CENTROWEG
+* AIPSIN 2019/1
+* MI-66
+* Autor(es): Daniel Schinaider de Oliveira, 
+* 	         Victor Hugo Moresco,
+* 		   	 Braian Costa Zapelini, 
+*            Leonardo Cech, 
+* 	         Gabriel da Costa 
+*
+* Data: 06/08/2020
+* 
+* Classe de dados do usuário
+* 
+* ===============================
+* Alteração
+* 
+* Data: 06/08/2020
+* Responsável: Leonardo Cech
+*
+* Documentação da Classe
+* -------------------------------------------------------
+*
+* ================================
+* Declaração de variáveis
+* id : int Identificador único do item
+* nome : String Nome do usuário
+* senha : String Senha do usuário
+* admin : boolean Valor booleano para verificação se o usuário irá ser um admin ou se já é um admin
+* ================================
+*/
+
 package Model;
+
+// IMPORTAÇÕES DE BIBLIOTECAS
 
 import javax.persistence.*;
 
@@ -24,6 +58,7 @@ public class Usuario {
     @Column(nullable = false) private boolean admin;
 
     // Metodos de encapsulamento
+    // GETS E SETS
     public void setId(int id) {
         this.id = id;
     }

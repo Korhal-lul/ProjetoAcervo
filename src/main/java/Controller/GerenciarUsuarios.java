@@ -10,7 +10,7 @@
 *
 * Data: 06/08/2020
 * 
-* Classe de processamento e renderização da janela principal
+* Classe de gerenciamento dos usuários
 * 
 * ===============================
 * Alteração
@@ -23,11 +23,24 @@
 *
 * ================================
 * Declaração de variáveis
-* 	 tableViewMateriais : TableView<Material> Objeto de instância da tabela de materiais
+* 	 tableViewUsuarios : TableView<Usuario> Objeto de instância da tabela de usuarios
+* 	 tableColumnId : TableColumn<Usuario, Integer> Objeto de instância da coluna 'id' da tabela de usuarios
+* 	 tableColumnNome : TableColumn<Usuario, String> Objeto de instância da coluna 'nome' da tabela de usuarios
+* 	 tableColumnAdmin : TableColumn<Usuario, Boolean> Objeto de instância da coluna 'admin' da tabela de usuarios
+* 
+* 	 buttonSair : Button Botão 'sair' que fecha a janela atual e abre a janela 'login'
+* 	 buttonCadastrarUsuario : Button Botão 'cadastrar' que realiza o cadastro do usuario no banco de dados
+* 	 buttonDesmarcarTudo : Button Botão 'desmarcar' que desmarca todas as opções selecionadas na tabela
+* 	 buttonExcluir : Button Botão 'excluir' que exclui um(s) determinado(s) item(s) da tabela
+* 	 buttonEditar : Button Botão 'editar' que abrirá uma nova guia para poder modificar seus dados
+* 	 buttonBuscar : Button Botão 'buscar' irá buscar um determinado item solicidado
+* 	 textFieldBuscar : TextField
 * ================================
 */
 
 package Controller;
+
+// IMPORTAÇÕES DE BIBLIOTECAS
 
 import java.io.IOException;
 import java.net.URL;
@@ -702,6 +715,15 @@ public class GerenciarUsuarios implements Initializable {
 	}
 	
 	/////////////////////////////////////////////////
+	/*
+	* preencherTabela(List<Material> list)
+	* Retorno: void
+	* Objetivo: Preenche a tabela com os itens selecionados da tabela de materiais
+	* Parâmetro de entrada:
+	* 			list: tipo Material (representa a lista de materias selecionados)
+	* Parâmetro de saida:
+	* 			tableViewMateriais.setItems(observableList) : tipo Tabela (seta os itens dentro da tabela)
+	*/
 	
 	public void preencherTabela(List<Usuario> list) {
 		
@@ -721,6 +743,11 @@ public class GerenciarUsuarios implements Initializable {
 	}
 	
 	/////////////////////////////////////////////////
+	/*
+	desmarcarTudo()
+	Retorno: void
+	Objetivo: Desmarcar todas as opções de itens selecionados na tabela
+	*/
 	
 	public void desmarcarTudo() {
 		// Acao de'desmarcar tudo' 
@@ -731,6 +758,11 @@ public class GerenciarUsuarios implements Initializable {
 	}
 	
 	/////////////////////////////////////////////////
+	/*
+	habilitarbotoes()
+	retorno: void
+	objetivo: habilitar os botões quando um produto estiver selecionado na tabela
+	*/
 	
 	public void habilitarbotoes() {
 		buttonDesmarcarTudo.setDisable(false);

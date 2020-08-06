@@ -23,7 +23,10 @@
 *
 * ================================
 * Declaração de variáveis 
-* 	
+* 	bufferedImage : BufferedImage Objeto para armazenar a imagem
+*   source : LuminanceSource Objeto utilizado para ser lido pelo bitmap
+*   bitmap : BinaryBitmap Objeto que mapeara o QRcode
+*   result : Result Objeto que recebe a informacao decodificada
 * ================================
 */
 

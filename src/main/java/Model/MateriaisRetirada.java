@@ -1,13 +1,44 @@
-package Model;
-
 /*
- * A Model Class MateriaisRetirada eh
- * utilizada como classe auxiliar, nao
- * sendo uma entidade do Banco de Dados
- * */
+* SENAI / CENTROWEG
+* AIPSIN 2019/1
+* MI-66
+* Autor(es): Daniel Schinaider de Oliveira, 
+* 	         Victor Hugo Moresco,
+* 		   	 Braian Costa Zapelini, 
+*            Leonardo Cech, 
+* 	         Gabriel da Costa 
+*
+* Data: 06/08/2020
+* 
+* Model Class MateriaisRetirada, utilizada como classe auxiliar, nao sendo uma entidade do Banco de Dados
+* 
+* ===============================
+* Alteração
+* 
+* Data: 06/08/2020
+* Responsável: Gabriel da Costa
+*
+* Documentação da Classe
+* -------------------------------------------------------
+*
+* ================================
+* Declaração de variáveis
+* 
+* id 			: int		Codigo identificador do item
+* numero 		: int		Quantidade do item
+* descricao 	: String	Descricao do item
+* tipo 			: String	Tipo do item
+* quantAtual	: int		Quantidade atual de itens em estoque
+* quantDesejada	: int		Quantidade que sera retirada
+*  
+* ================================
+*/
+
+package Model;
 
 public class MateriaisRetirada {
 
+	// Variaveis
     private int    id;
     private int    numero;
     private String descricao;
@@ -15,6 +46,7 @@ public class MateriaisRetirada {
     private int    quantAtual;
     private int    quantDesejada;
 
+    // Construtores, com e sem parametros
     public MateriaisRetirada() {}
 
     public MateriaisRetirada(int numero, String descricao, String tipo, int quantAtual, int quantDesejada) {
@@ -25,6 +57,7 @@ public class MateriaisRetirada {
         this.setQuantDesejada(quantDesejada);
     }
 
+    // Metodos implementados
     public void setId(int id) {
         this.id = id;
     }
