@@ -32,8 +32,8 @@
 * 	 buttonCadastrarUsuario : Button Botão 'cadastrar' que realiza o cadastro do usuario no banco de dados
 * 	 buttonDesmarcarTudo : Button Botão 'desmarcar' que desmarca todas as opções selecionadas na tabela
 * 	 buttonExcluir : Button Botão 'excluir' que exclui um(s) determinado(s) item(s) da tabela
-* 	 buttonEditar : Button Botão 'editar' que abrirá
-* 	 buttonBuscar : Button
+* 	 buttonEditar : Button Botão 'editar' que abrirá uma nova guia para poder modificar seus dados
+* 	 buttonBuscar : Button Botão 'buscar' irá buscar um determinado item solicidado
 * 	 textFieldBuscar : TextField
 * ================================
 */
