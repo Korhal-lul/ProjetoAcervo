@@ -10,13 +10,11 @@
 *
 * Data: 06/08/2020
 * 
-* Classe de processamento e renderização da janela principal
-* 
 * ===============================
 * Alteração
 * 
 * Data: 06/08/2020
-* Responsável: Leonardo Cech
+* Responsável: Victor Hugo Moresco
 *
 * Documentação da Classe
 * -------------------------------------------------------
