@@ -20,12 +20,16 @@
 *
 * Documentação da Classe
 * -------------------------------------------------------
-*
-* ================================
-* Declaração de variáveis
 * 
 * ================================
+* Declaração de variáveis
+* textFieldUsuario : TextField 
+* textFieldSenha : TextField
+* buttonEntrar : Button Botão 'entrar' permite ao usuário sua entrada para a página principal do sistema caso não ocorra nenhum erro
+* ================================
 */
+
+// IMPORTAÇÕES DE BIBLIOTECAS
 
 package Controller;
 
@@ -193,8 +197,12 @@ public class Login implements Initializable {
     }
 
     /////////////////////////////////////////////////
+    /*
+	setUsuario(UsuarioLogado usuarioLogado)
+	retorno: void
+	objetivo: Define o usuário logado na sessão
+	*/
     
-    // Define o usuario logado na sessao
 	public void setUsuario(UsuarioLogado usuarioLogado) {
    
     	daoLog = new DaoUsuarioLogado();
