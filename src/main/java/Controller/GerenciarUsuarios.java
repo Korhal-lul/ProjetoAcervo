@@ -23,7 +23,18 @@
 *
 * ================================
 * Declaração de variáveis
-* 	 tableViewMateriais : TableView<Material> Objeto de instância da tabela de materiais
+* 	 tableViewUsuarios : TableView<Usuario> Objeto de instância da tabela de usuarios
+* 	 tableColumnId : TableColumn<Usuario, Integer> Objeto de instância da coluna 'id' da tabela de usuarios
+* 	 tableColumnNome : TableColumn<Usuario, String> Objeto de instância da coluna 'nome' da tabela de usuarios
+* 	 tableColumnAdmin : TableColumn<Usuario, Boolean> Objeto de instância da coluna 'admin' da tabela de usuarios
+* 
+* 	 buttonSair : Button Botão 'sair' que fecha a janela atual e abre a janela 'login'
+* 	 buttonCadastrarUsuario : Button Botão 'cadastrar' que fecha a janela atual e abre a janela 'login'
+* 	 buttonDesmarcarTudo : Button
+* 	 buttonExcluir : Button
+* 	 buttonEditar : Button
+* 	 buttonBuscar : Button
+* 	 textFieldBuscar : TextField
 * ================================
 */
 
@@ -702,6 +713,15 @@ public class GerenciarUsuarios implements Initializable {
 	}
 	
 	/////////////////////////////////////////////////
+	/*
+	* preencherTabela(List<Material> list)
+	* Retorno: void
+	* Objetivo: Preenche a tabela com os itens selecionados da tabela de materiais
+	* Parâmetro de entrada:
+	* 			list: tipo Material (representa a lista de materias selecionados)
+	* Parâmetro de saida:
+	* 			tableViewMateriais.setItems(observableList) : tipo Tabela (seta os itens dentro da tabela)
+	*/
 	
 	public void preencherTabela(List<Usuario> list) {
 		
@@ -721,6 +741,11 @@ public class GerenciarUsuarios implements Initializable {
 	}
 	
 	/////////////////////////////////////////////////
+	/*
+	desmarcarTudo()
+	Retorno: void
+	Objetivo: Desmarcar todas as opções de itens selecionados na tabela
+	*/
 	
 	public void desmarcarTudo() {
 		// Acao de'desmarcar tudo' 
@@ -731,6 +756,11 @@ public class GerenciarUsuarios implements Initializable {
 	}
 	
 	/////////////////////////////////////////////////
+	/*
+	habilitarbotoes()
+	retorno: void
+	objetivo: habilitar os botões quando um produto estiver selecionado na tabela
+	*/
 	
 	public void habilitarbotoes() {
 		buttonDesmarcarTudo.setDisable(false);
