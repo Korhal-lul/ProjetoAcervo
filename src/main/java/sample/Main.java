@@ -10,7 +10,7 @@
  *
  * Data: 06/08/2020
  *
- * Classe de processamento e renderização da janela principal
+ * Classe principal do programa, responsável por iniciar o proprio
  *
  * =============================================================
  * Alteração
