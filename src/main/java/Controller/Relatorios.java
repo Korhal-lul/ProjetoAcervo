@@ -342,7 +342,9 @@ public class Relatorios implements Initializable {
 	public List<Relatorio> getCaminhos(List<Relatorio> list) {
 		
 		// Mostra caminhos dos arquivos do diretorio
-		File directory = new File("relatorios/");
+		File directory = new File("relatorios\\");
+		if (!directory.exists()) { directory.mkdirs(); }
+		
 		File[] contents = directory.listFiles();
 		
 		for ( File f : contents) {
