@@ -50,8 +50,9 @@ public class HibernateUtil {
 		try {
 			
 			// Caso nao haja uma entidade de gerenciamento definida, crie
-			if (factory == null) 
+			if (factory == null)
 				factory = Persistence.createEntityManagerFactory("ProjetoAcervo");
+
 			
 		} catch (Exception e) {
 			

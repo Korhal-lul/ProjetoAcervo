@@ -46,19 +46,25 @@ import javax.persistence.*;
  * */
 
 @Entity
-@Table(name = "Usuario")
+@Table(name = "usuario")
 public class Usuario {
 
 	// Definicao de chave primaria da entidade
     @Id
-    @SequenceGenerator(name="user", sequenceName="userSeq", allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="user")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
     private int id;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
+    private Endereco endereco;
     
     // Caracteristicas da entidade
     @Column(nullable = false) private String nome;
     @Column(nullable = false) private String senha;
     @Column(nullable = false) private boolean admin;
+
+    public Usuario(){};
 
     // Metodos de encapsulamento
     // GETS E SETS
@@ -93,4 +99,12 @@ public class Usuario {
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 }
