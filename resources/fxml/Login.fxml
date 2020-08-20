@@ -1,44 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Login">
+<AnchorPane prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #21252b;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Login">
    <children>
-      <TextField fx:id="textFieldUsuario" layoutX="25.0" layoutY="250.0" prefHeight="50.0" prefWidth="350.0" promptText="Insira aqui">
+      <TextField fx:id="textFieldUsuario" layoutX="25.0" layoutY="250.0" prefHeight="50.0" prefWidth="350.0" promptText="Insira aqui" style="-fx-background-color: #2c313c; -fx-text-inner-color: #bbbbbb;">
          <font>
             <Font name="Calibri" size="20.0" />
          </font></TextField>
-      <Label layoutX="79.0" layoutY="43.0" text="Projeto Acervo">
+      <Label layoutX="79.0" layoutY="43.0" style="-fx-color: #bbbbbb;" text="Projeto Acervo" textFill="#e7f2ff">
          <font>
             <Font name="Trebuchet MS" size="37.0" />
          </font>
       </Label>
-      <Label layoutX="25.0" layoutY="215.0" text="Nome de usuário:">
+      <Label layoutX="25.0" layoutY="215.0" style="-fx-font-style: white;" text="Nome de usuário:" textFill="#e7f2ff">
          <font>
             <Font name="Calibri" size="20.0" />
          </font></Label>
-      <Label layoutX="25.0" layoutY="323.0" text="Senha:">
+      <Label layoutX="25.0" layoutY="323.0" text="Senha:" textFill="#e7f2ff">
          <font>
             <Font name="Calibri" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="64.0" layoutY="120.0" prefHeight="63.0" prefWidth="277.0" text="Seu login é necessário, por favor, insira seus dados" textAlignment="CENTER" wrapText="true">
+      <Label layoutX="64.0" layoutY="120.0" prefHeight="63.0" prefWidth="277.0" text="Seu login é necessário, por favor, insira seus dados" textAlignment="CENTER" textFill="#e7f2ff" wrapText="true">
          <font>
             <Font name="Calibri" size="20.0" />
          </font>
       </Label>
-      <PasswordField fx:id="textFieldSenha" accessibleRole="PASSWORD_FIELD" layoutX="25.0" layoutY="355.0" prefHeight="50.0" prefWidth="350.0" promptText="Insira aqui">
+      <PasswordField fx:id="textFieldSenha" accessibleRole="PASSWORD_FIELD" layoutX="25.0" layoutY="355.0" prefHeight="50.0" prefWidth="350.0" promptText="Insira aqui" style="-fx-background-color: #2c313c; -fx-text-inner-color: #bbbbbb;">
          <font>
             <Font name="Calibri" size="20.0" />
          </font>
       </PasswordField>
-      <Button fx:id="buttonEntrar" contentDisplay="CENTER" layoutX="296.0" layoutY="431.0" mnemonicParsing="false" text="Entrar" textAlignment="CENTER">
+      <Button fx:id="buttonEntrar" contentDisplay="CENTER" layoutX="296.0" layoutY="431.0" mnemonicParsing="false" style="-fx-background-color: #4674e0;" text="Entrar" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Calibri" size="20.0" />
          </font></Button>
-      <TextField layoutX="25.0" layoutY="355.0" prefHeight="50.0" prefWidth="277.0" promptText="Insira aqui" visible="false">
+      <TextField layoutX="25.0" layoutY="355.0" prefHeight="50.0" prefWidth="277.0" promptText="Insira aqui" style="-fx-color: #bbbbbb;" visible="false">
          <font>
             <Font name="Calibri" size="20.0" />
          </font>

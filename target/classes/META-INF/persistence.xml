@@ -11,7 +11,7 @@
 		
 		<properties> <!-- Propriedades para comunicacao entre o Java e o MySQL -->
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-			<property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/acervo?useSSL=false"/>
+			<property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3308/acervo?useSSL=false"/>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
 			<property name="hibernate.connection.username" value="root"/>
 			<property name="hibernate.connection.password" value=""/>
