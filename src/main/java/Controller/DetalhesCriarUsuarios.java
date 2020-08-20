@@ -15,7 +15,7 @@
 * ===============================
 * Alteração
 * 
-* Data: 06/08/2020
+* Data: 20/08/2020
 * Responsável: Leonardo Cech
 *
 * Documentação da Classe
@@ -26,18 +26,15 @@
 *
 * ================================
 * Declaração de variáveis
-* 	 tableViewUsuarios : TableView<Usuario> Objeto de instância da tabela de usuarios
-* 	 tableColumnId : TableColumn<Usuario, Integer> Objeto de instância da coluna 'id' da tabela de usuarios
-* 	 tableColumnNome : TableColumn<Usuario, String> Objeto de instância da coluna 'nome' da tabela de usuarios
-* 	 tableColumnAdmin : TableColumn<Usuario, Boolean> Objeto de instância da coluna 'admin' da tabela de usuarios
 * 
-* 	 buttonSair : Button Botão 'sair' que fecha a janela atual e abre a janela 'login'
-* 	 buttonCadastrarUsuario : Button Botão 'cadastrar' que realiza o cadastro do usuario no banco de dados
-* 	 buttonDesmarcarTudo : Button Botão 'desmarcar' que desmarca todas as opções selecionadas na tabela
-* 	 buttonExcluir : Button Botão 'excluir' que exclui um(s) determinado(s) item(s) da tabela
-* 	 buttonEditar : Button Botão 'editar' que abrirá uma nova guia para poder modificar seus dados
-* 	 buttonBuscar : Button Botão 'buscar' irá buscar um determinado item solicidado
-* 	 textFieldBuscar : TextField
+* 	 buttonFechar : Button Botão 'fechar' fechará a tela de validação do CEP inserido
+* 	 cepCriarTF : TextField
+* 	 logradouroCriarTF : TextField
+* 	 complementoCriarTF : TextField
+* 	 bairroCriarTF : TextField
+* 	 localidadeCriarTF : TextField
+* 	 ufCriarTF : TextField
+* 	 unidadeCriarTF : TextField
 * ================================
 */
 
@@ -84,12 +81,30 @@ public class DetalhesCriarUsuarios implements Initializable {
 	    ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
 	}
 
+	/////////////////////////////////////////////////
+	/*
+	* validar(String cep)
+	* Retorno: void
+	* Objetivo: Valida a busca pelo CEP inserido no JFrame
+	* Parâmetro de entrada:
+	* 			cep: tipo String (representa o CEP inserido pelo usuário)
+	* Parâmetro de saida:
+	* 			setEnderecoCriarUsuario(endereco) : metodo (envia endereco buscado atraves do cep)
+	*/
 	public void validar(String cep) throws Exception {
 		
 		Endereco endereco = ValidaCEP.buscaEnderecoPelo(cep);
 		setEnderecoCriarUsuario(endereco);
 	}
 	
+	/////////////////////////////////////////////////
+	/*
+	* setEnderecoCriarUsuario(Endereco endereco)
+	* Retorno: void
+	* Objetivo: Ao buscar o CEP no método 'validar()', preenche os campos com as informações pesquisadas
+	* Parâmetro de entrada:
+	* 			endereco: tipo Endereco (representa o objeto da classe 'Endereco')		
+	*/
 	public void setEnderecoCriarUsuario(Endereco endereco) {
 		
  	        cepCriarTF.setText(endereco.getCep());

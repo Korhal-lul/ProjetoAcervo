@@ -3,10 +3,10 @@
 * AIPSIN 2019/1
 * MI-66
 * Autor(es): Daniel Schinaider de Oliveira, 
-* 	         Victor Hugo Moresco,
-* 		   	 Braian Costa Zapelini, 
+*              Victor Hugo Moresco,
+*                 Braian Costa Zapelini, 
 *            Leonardo Cech, 
-* 	         Gabriel da Costa 
+*              Gabriel da Costa 
 *
 * Data: 06/08/2020
 * 
@@ -23,7 +23,7 @@
 *
 * ================================
 * Declaração de variáveis 
-* 	bufferedImage : BufferedImage Objeto para armazenar a imagem
+*     bufferedImage : BufferedImage Objeto para armazenar a imagem
 *   source : LuminanceSource Objeto utilizado para ser lido pelo bitmap
 *   bitmap : BinaryBitmap Objeto que mapeara o QRcode
 *   result : Result Objeto que recebe a informacao decodificada
@@ -31,6 +31,8 @@
 */
 
 package Controller;
+
+//IMPORTAÇÕES DE BIBLIOTECAS
 
 import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
@@ -43,14 +45,18 @@ import java.io.IOException;
 
 public class LeitorQRCode {
 
+
     public static String decodeQRCode(File file) throws IOException {
-    	
+
+        // Buffer para ler um arquivo img
         BufferedImage bufferedImage = ImageIO.read(file);
-        
+
         LuminanceSource source = new BufferedImageLuminanceSource(bufferedImage);
+        // Binario respondavel por capturar a fonte da imagem
         BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 
         try {
+            // Result faz a leitura do bit map e retorna um texto
             Result result = new MultiFormatReader().decode(bitmap);
             return result.getText();
         } catch (NotFoundException e) {
