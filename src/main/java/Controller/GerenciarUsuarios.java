@@ -417,7 +417,7 @@ public class GerenciarUsuarios implements Initializable {
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
-				    	
+				    	novoUsuario.setEndereco(endereco);
 				        return novoUsuario;
 				    }
 				    return null;
