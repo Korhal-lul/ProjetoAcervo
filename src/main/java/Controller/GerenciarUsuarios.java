@@ -409,19 +409,11 @@ public class GerenciarUsuarios implements Initializable {
 							endereco = ValidaCEP.buscaEnderecoPelo(cep.getText());
 							endereco.setComplemento(complemento.getText());
 							endereco.setUnidade(unidade.getText());
-							
-							System.out.println(endereco.getId());
-							System.out.println(endereco.getCep());
-							System.out.println(endereco.getBairro());
-							System.out.println(endereco.getComplemento());
-							System.out.println(endereco.getLocalidade());
-							System.out.println(endereco.getLogradouro());
-							System.out.println(endereco.getUf());
-							System.out.println(endereco.getUnidade());
-							System.out.println(endereco.getUsuario().getId());
-							
+
+							System.out.println(endereco.toString());
+							daoEnde = new DaoEndereco();
 							daoEnde.insert(endereco);
-							
+
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

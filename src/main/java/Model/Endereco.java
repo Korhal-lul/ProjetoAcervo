@@ -10,9 +10,6 @@ public class Endereco {
     @Column(nullable = false)
     private int id;
 
-    @OneToOne(mappedBy = "endereco")
-    private Usuario usuario;
-
     @Column(nullable = false) private String bairro;
     @Column(nullable = false) private String cep;
     @Column(nullable = false) private String uf;
@@ -29,14 +26,6 @@ public class Endereco {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 
     public String getCep() {
@@ -80,5 +69,19 @@ public class Endereco {
     }
     public void setUnidade(String unidade) {
         this.unidade = unidade;
+    }
+
+    @Override
+    public String toString() {
+        return "Endereco{" +
+                "id=" + id +
+                ", bairro='" + bairro + '\'' +
+                ", cep='" + cep + '\'' +
+                ", uf='" + uf + '\'' +
+                ", logradouro='" + logradouro + '\'' +
+                ", complemento='" + complemento + '\'' +
+                ", localidade='" + localidade + '\'' +
+                ", unidade='" + unidade + '\'' +
+                '}';
     }
 }

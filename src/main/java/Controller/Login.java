@@ -36,6 +36,9 @@ package Controller;
 
 // IMPORTAÇÕES DE BIBLIOTECAS
 
+import Dao.DaoEndereco;
+import Dao.DaoGeneric;
+import Model.Endereco;
 import Model.Usuario;
 import Model.UsuarioLogado;
 import javafx.event.ActionEvent;
@@ -94,12 +97,23 @@ public class Login implements Initializable {
     	
     	// Caso nao haja usuarios cadastrados, cria o usuario root padrao
     	if (usuarios.size() == 0) {
+    		DaoGeneric dao = new DaoGeneric();
+			Endereco endereco = new Endereco();
+			endereco.setCep("89260640");
+			endereco.setUnidade("1");
+			endereco.setComplemento("DASDAS");
+			endereco.setLocalidade("Rua Oscar Schneider");
+			endereco.setLogradouro("SLA");
+			endereco.setBairro("99");
+			endereco.setUf("SC");
+    		dao.insert(endereco);
     		
     		modelUsuario = new Usuario();
     		modelUsuario.setNome("ADMIN");
     		modelUsuario.setSenha("AcervoAdmin2020");
     		modelUsuario.setAdmin(true);
-    		dao.insert(modelUsuario);
+    		modelUsuario.setEndereco(endereco);
+			dao.insert(modelUsuario);
     		usuarios = dao.listar((Class<Usuario>) modelUsuario.getClass());
     	}
     	
