@@ -10,7 +10,7 @@
 *
 * Data: 06/08/2020
 * 
-* Classe de processamento e renderização da janela principal
+* Classe de gerenciamento dos usuários
 * 
 * ===============================
 * Alteração
@@ -21,13 +21,29 @@
 * Documentação da Classe
 * -------------------------------------------------------
 *
+* Data: 06/08/2020
+* Responsável: Braian Costa Zapelini
+*
 * ================================
 * Declaração de variáveis
-* 	 tableViewMateriais : TableView<Material> Objeto de instância da tabela de materiais
+* 	 tableViewUsuarios : TableView<Usuario> Objeto de instância da tabela de usuarios
+* 	 tableColumnId : TableColumn<Usuario, Integer> Objeto de instância da coluna 'id' da tabela de usuarios
+* 	 tableColumnNome : TableColumn<Usuario, String> Objeto de instância da coluna 'nome' da tabela de usuarios
+* 	 tableColumnAdmin : TableColumn<Usuario, Boolean> Objeto de instância da coluna 'admin' da tabela de usuarios
+* 
+* 	 buttonSair : Button Botão 'sair' que fecha a janela atual e abre a janela 'login'
+* 	 buttonCadastrarUsuario : Button Botão 'cadastrar' que realiza o cadastro do usuario no banco de dados
+* 	 buttonDesmarcarTudo : Button Botão 'desmarcar' que desmarca todas as opções selecionadas na tabela
+* 	 buttonExcluir : Button Botão 'excluir' que exclui um(s) determinado(s) item(s) da tabela
+* 	 buttonEditar : Button Botão 'editar' que abrirá uma nova guia para poder modificar seus dados
+* 	 buttonBuscar : Button Botão 'buscar' irá buscar um determinado item solicidado
+* 	 textFieldBuscar : TextField
 * ================================
 */
 
 package Controller;
+
+// IMPORTAÇÕES DE BIBLIOTECAS
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,6 +54,8 @@ import java.util.ResourceBundle;
 
 import Dao.DaoUsuario;
 import Dao.DaoUsuarioLogado;
+import Dao.DaoEndereco;
+import Model.Endereco;
 import Model.Usuario;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -71,6 +89,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+@SuppressWarnings("restriction")
 public class GerenciarUsuarios implements Initializable {
 
 	// Instancia dos componentes do ambiente grafico
@@ -80,6 +99,7 @@ public class GerenciarUsuarios implements Initializable {
 	@FXML private Button buttonExcluir;
 	@FXML private Button buttonEditar;
 	@FXML private Button buttonBuscar;
+	@FXML private Button buttonDetalhes;
 	@FXML private TextField textFieldBuscar;
 
 	@FXML private TableView<Usuario> tableViewUsuarios;
@@ -90,10 +110,15 @@ public class GerenciarUsuarios implements Initializable {
 	// Declaracao de classes para CRUD
 	DaoUsuario dao;
 	DaoUsuarioLogado daoLog;
+	DaoEndereco daoEnde;
 
 	// Auxiliares
 	List<Usuario> usuarioList = new ArrayList<>();
 	Usuario modelUsuario = new Usuario();
+	
+	Usuario usuario = new Usuario();
+	Endereco enderecoUsuario = new Endereco();
+	
 	private int contarConcluido;
 
 	/////////////////////////////////////////////////
@@ -115,6 +140,7 @@ public class GerenciarUsuarios implements Initializable {
 					Stage stage = new Stage();
 					stage.setTitle("Acervo");
 					stage.setScene(new Scene(root, 700, 500));
+					stage.getIcons().add(new Image(this.getClass().getResource("/icons/logo.png").toString()));
 					stage.setResizable(false);
 					stage.show();
 					((Node) (event.getSource())).getScene().getWindow().hide();
@@ -131,7 +157,7 @@ public class GerenciarUsuarios implements Initializable {
 		buttonCadastrarUsuario.setFont(new Font("Calibri", 16));
 		buttonCadastrarUsuario.setOnAction(new EventHandler<ActionEvent>() {
 			
-			private boolean nomeTxt = true, senhaTxt = true;
+			private boolean nomeTxt = true, senhaTxt = true, cepTxt = true, unidadeTxt = true;
 
 			public void handle(ActionEvent event) {
 
@@ -161,14 +187,14 @@ public class GerenciarUsuarios implements Initializable {
 				GridPane grid = new GridPane();
 				grid.setHgap(30);
 				grid.setVgap(5);
-				grid.setPadding(new Insets(10, 30, 10, 30));
+				grid.setPadding(new Insets(10, 0, 10, 30));
 
 				//==============================
 				// Criando componentes
 				
 				TextField nome = new TextField();
 				nome.setPromptText("Nome de usuário");
-				nome.setPrefWidth(250);
+				nome.setPrefWidth(285);
 				nome.setPrefHeight(37);
 				nome.setFont(fonte);
 				
@@ -176,9 +202,39 @@ public class GerenciarUsuarios implements Initializable {
 				
 				TextField senha = new TextField();
 				senha.setPromptText("Senha");
-				senha.setPrefWidth(250);
+				senha.setPrefWidth(285);
 				senha.setPrefHeight(37);
 				senha.setFont(fonte);
+				
+				//--------------------------------
+				
+				TextField cep = new TextField();
+				cep.setPromptText("Ex: 11122333");
+				cep.setPrefWidth(100);
+				cep.setPrefHeight(37);
+				cep.setFont(fonte);
+				
+				Button buttonValidarCep = new Button();
+				buttonValidarCep.setDisable(true);
+				buttonValidarCep.setText("Buscar");
+				buttonValidarCep.setPrefWidth(70);
+				buttonValidarCep.setFont(fonte);
+				
+				//--------------------------------
+				
+				TextField complemento = new TextField();
+				complemento.setPromptText("Ex.: casa 2");
+				complemento.setPrefWidth(285);
+				complemento.setPrefHeight(37);
+				complemento.setFont(fonte);
+				
+				//--------------------------------
+				
+				TextField unidade = new TextField();
+				unidade.setPromptText("Ex.: 139");
+				unidade.setPrefWidth(285);
+				unidade.setPrefHeight(37);
+				unidade.setFont(fonte);
 				
 				//--------------------------------
 				
@@ -187,21 +243,34 @@ public class GerenciarUsuarios implements Initializable {
 				
 				//--------------------------------
 				
-		        Label labelNome = new Label("Insira o nome de usuário:");
-		        Label labelSenha = new Label("Insira a senha:");
+		        Label labelNome        = new Label("Insira o nome de usuário:");
+		        Label labelSenha       = new Label("Insira a senha:");
+		        Label labelCEP         = new Label("Insira o CEP (sem hífen):");
+		        Label labelComplemento = new Label("Complemento do endereço:");
+		        Label labelUnidade     = new Label("Número de residência:");
 		        
 		        labelNome.setFont(fonte);
 		        labelSenha.setFont(fonte);
+		        labelCEP.setFont(fonte);
+		        labelComplemento.setFont(fonte);
+		        labelUnidade.setFont(fonte);
 		        
 		        //==============================
 		     	// Adicionando componentes na janela de dialogo
 		        
-				grid.add(labelNome, 0, 0);
-				grid.add(nome, 0, 1, 2, 1);
-				grid.add(labelSenha, 0, 2);
-				grid.add(senha, 0, 3, 2, 3);
-				grid.add(hboxAdmin, 0, 8);
-
+				grid.add(labelNome       , 0, 0);
+				grid.add(nome            , 0, 1, 3, 1);
+				grid.add(labelSenha      , 0, 2);
+				grid.add(senha           , 0, 3, 3, 1);
+				grid.add(labelCEP        , 0, 4);
+				grid.add(cep             , 0, 5, 1, 1);
+				grid.add(buttonValidarCep, 1, 5, 3, 1);
+				grid.add(labelComplemento, 0, 6);
+				grid.add(complemento     , 0, 7, 3, 1);
+				grid.add(labelUnidade    , 0, 8);
+				grid.add(unidade         , 0, 9, 3, 1);
+				grid.add(hboxAdmin       , 0, 10, 3, 1);
+				
 				//==============================
 				
 				// Habilita ou desabilita o botao 'cadastrar' de acordo com o preenchimento dos campos
@@ -210,7 +279,7 @@ public class GerenciarUsuarios implements Initializable {
 
 				nome.textProperty().addListener((observable, oldValue, newValue) -> {
 					
-					// booleano para bloquear o botao 'editar' caso nao haja texto ou ultrapasse 200 caracteres
+					// booleano para bloquear o botao 'cadastrar' caso nao haja texto ou ultrapasse 200 caracteres
 					this.nomeTxt = nome.getText().length() == 0 || nome.getText().length() > 200; 
 					
 					try { // Validacao de entrada de texto em TextField
@@ -219,7 +288,7 @@ public class GerenciarUsuarios implements Initializable {
 							
 							// Remove qualquer caracter especial permitindo apenas letras maiusculas e minisculas
 							// caracteres numericos de 0 a 9 e espacos
-							nome.setText(nome.getText().replaceAll("[^a-zA-Z0-9\\u0020]", ""));
+							nome.setText(nome.getText().replaceAll("[^a-zA-Z\\u0020]", ""));
 							
 							// Quando houver espacos repetidos deixar apenas 1 espaco no lugar
 							nome.setText(nome.getText().replaceAll("\\u0020{2,}", " "));
@@ -243,13 +312,82 @@ public class GerenciarUsuarios implements Initializable {
 					this.senhaTxt = senha.getText().length() < 4 || senha.getText().length() > 20; 
 					
 					// Desabilita o botao se os campos estiverem vazios ou com entradas invalidas
-					buttonCad.setDisable(this.senhaTxt || this.nomeTxt);
+					buttonCad.setDisable(this.senhaTxt || this.nomeTxt || this.cepTxt || this.unidadeTxt);
+				});
+				
+				//////////////////////////////////////////////////////////////////////////
+								
+				cep.textProperty().addListener((observable, oldValue, newValue) -> {
+				
+					// booleano para saber se o CEP possui menos de 7 ou mais de 8 caracteres, bloqueando o botao 'cadastrar'
+					this.cepTxt = cep.getText().length() < 7;
+					
+					if (cep.getText().length() == 7 || 
+						cep.getText().length() == 8) buttonValidarCep.setDisable(false); 
+					
+					else buttonValidarCep.setDisable(true); 
+					
+				    if (cep.getText().length() > 8) cep.setText(cep.getText().substring(0, 8));
+					
+					// Impede quaisquer caracteres diferentes de 0-9
+					cep.setText(cep.getText().replaceAll("[^0-9]", ""));
+					
+					// Desabilita o botao se os campos estiverem vazios ou com entradas invalidas
+					buttonCad.setDisable(this.senhaTxt || this.nomeTxt || this.cepTxt || this.unidadeTxt);
 				});
 
 				//////////////////////////////////////////////////////////////////////////
 				
-				// Obtendo os dados entrados e fechando a janela de dialogo
+				unidade.textProperty().addListener((observable, oldValue, newValue) -> {
+					
+					// booleano para saber se a unidade possui menos de 1 ou mais de 4 caracteres, bloqueando o botao 'cadastrar'
+					this.unidadeTxt = unidade.getText().length() < 1;
+					if (unidade.getText().length() > 4) unidade.setText(unidade.getText().substring(0, 4));
+					
+					// Impede quaisquer caracteres diferentes de 0-9
+					unidade.setText(unidade.getText().replaceAll("[^0-9]", ""));
+					
+					// Desabilita o botao se os campos estiverem vazios ou com entradas invalidas
+					buttonCad.setDisable(this.senhaTxt || this.nomeTxt || this.cepTxt || this.unidadeTxt);
+				});
+
+				//////////////////////////////////////////////////////////////////////////
 				
+				// Evento do botao 'ValidarCep' que manda o cep informado para a AIP ValidaCEP
+				buttonValidarCep.setOnAction(new EventHandler<ActionEvent>() {
+					
+					public void handle(ActionEvent event) {
+						
+						try {
+							FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DadosCriarUsuario.fxml"), resources);
+
+							Parent root = loader.load();
+							
+							// Manda o CEP para validação
+							DetalhesCriarUsuarios detalhes = loader.getController();
+							try {
+								detalhes.validar(cep.getText());
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+							
+							Stage stage = new Stage();
+							stage.setTitle("Dados do endereço");
+							stage.setScene(new Scene(root, 380, 360));
+							stage.getIcons().add(new Image(this.getClass().getResource("/icons/logo.png").toString()));
+							stage.setResizable(false);
+							stage.show();
+							//((Node) (event.getSource())).getScene().getWindow().hide();
+							
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				
+				//////////////////////////////////////////////////////////////////////////
+				
+				// Obtendo os dados entrados e fechando a janela de dialogo
 				dialogo.getDialogPane().setContent(grid);
 
 				Platform.runLater(() -> nome.requestFocus());
@@ -265,6 +403,28 @@ public class GerenciarUsuarios implements Initializable {
 				    	novoUsuario.setNome(nome.getText().trim());
 				    	novoUsuario.setSenha(senha.getText());
 				    	novoUsuario.setAdmin(admin.isSelected());
+				    	
+				    	Endereco endereco = new Endereco();
+				    	try {
+							endereco = ValidaCEP.buscaEnderecoPelo(cep.getText());
+							endereco.setComplemento(complemento.getText());
+							endereco.setUnidade(unidade.getText());
+							
+							System.out.println(endereco.getId());
+							System.out.println(endereco.getCep());
+							System.out.println(endereco.getBairro());
+							System.out.println(endereco.getComplemento());
+							System.out.println(endereco.getLocalidade());
+							System.out.println(endereco.getLogradouro());
+							System.out.println(endereco.getUf());
+							System.out.println(endereco.getUnidade());
+							System.out.println(endereco.getUsuario().getId());
+							
+							daoEnde.insert(endereco);
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 				    	
 				        return novoUsuario;
 				    }
@@ -382,16 +542,20 @@ public class GerenciarUsuarios implements Initializable {
 				
 				ObservableList<Usuario> selectedItems = tableViewUsuarios.getSelectionModel().getSelectedItems();
 				
-				// Desabilita os botoes 'excluir' e 'editar' caso o admin root do sistema
+				// Desabilita os botoes 'excluir', 'editar' e 'detalhes' caso o admin root do sistema
 				// esteja selecionado
 				for (int i = 0 ; i < selectedItems.size(); i++) {
+					
 					if (selectedItems.get(i).getNome().equals("ADMIN") &&
 						selectedItems.get(i).isAdmin()) {
 						buttonEditar.setDisable(true);
 						buttonExcluir.setDisable(true);
+						buttonDetalhes.setDisable(true);
 						break;
 					} 
 					
+					if (selectedItems.size() > 1) buttonDetalhes.setDisable(true);
+					else usuario.setNome(selectedItems.get(0).getNome());	
 				}
 			}
 		});
@@ -456,12 +620,44 @@ public class GerenciarUsuarios implements Initializable {
 		
 		/////////////////////////////////////////////////
 		
+		// Evento do botao 'relatorios' que fecha a janela atual e abre o diretorio de relatorios
+		buttonDetalhes.setTooltip(new Tooltip("Relatórios"));
+		buttonDetalhes.setFont(new Font("Calibri", 16));
+		buttonDetalhes.setOnAction(new EventHandler<ActionEvent>() {
+			
+			public void handle(ActionEvent event) {
+				
+				dao = new DaoUsuario();
+				
+				try {
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DadosUsuario.fxml"), resources);
+
+					Parent root = loader.load();
+					
+					// Manda o Objeto de endereco do usuario
+					// selecionado para a Controller DetalhesUsuarios
+					DetalhesUsuarios detalhes = loader.getController();
+					detalhes.setDetalhes(usuario, enderecoUsuario);
+					
+					Stage stage = new Stage();
+					stage.setTitle("Dados do usuário");
+					stage.setScene(new Scene(root, 420, 500));
+					stage.getIcons().add(new Image(this.getClass().getResource("/icons/logo.png").toString()));
+					stage.setResizable(false);
+					stage.show();
+					((Node) (event.getSource())).getScene().getWindow().hide();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
 		// Evento do botao 'Editar usuario' que edita no BD o(s) usuario(s) selecioado(s)
 		buttonEditar.setTooltip(new Tooltip("Editar usuários selecionados"));
 		buttonEditar.setFont(new Font("Calibri", 16));
 		buttonEditar.setOnAction(new EventHandler<ActionEvent>() {
 			
-			private boolean nomeTxt = true, senhaTxt = true;
+			private boolean nomeTxt = true, senhaTxt = true, cepTxt = true, complementoTxt = true, unidadeTxt = true;
 
 			public void handle(ActionEvent event) {
 				
@@ -511,7 +707,7 @@ public class GerenciarUsuarios implements Initializable {
 					GridPane grid = new GridPane();
 					grid.setHgap(30);
 					grid.setVgap(5);
-					grid.setPadding(new Insets(10, 30, 10, 30));
+					grid.setPadding(new Insets(10, 0, 10, 30));
 	
 					//==============================
 					// Criando componentes
@@ -532,6 +728,36 @@ public class GerenciarUsuarios implements Initializable {
 					senha.setFont(fonte);
 					
 					//--------------------------------
+
+					TextField cep = new TextField();
+					cep.setPromptText("Ex: 11122333");
+					cep.setPrefWidth(100);
+					cep.setPrefHeight(37);
+					cep.setFont(fonte);
+
+					Button buttonValidarCep = new Button();
+					buttonValidarCep.setDisable(true);
+					buttonValidarCep.setText("Buscar");
+					buttonValidarCep.setPrefWidth(70);
+					buttonValidarCep.setFont(fonte);
+
+					//--------------------------------
+
+					TextField complemento = new TextField();
+					complemento.setPromptText("Ex.: casa 2");
+					complemento.setPrefWidth(285);
+					complemento.setPrefHeight(37);
+					complemento.setFont(fonte);
+
+					//--------------------------------
+
+					TextField unidade = new TextField();
+					unidade.setPromptText("Ex.: 139");
+					unidade.setPrefWidth(285);
+					unidade.setPrefHeight(37);
+					unidade.setFont(fonte);
+
+					//--------------------------------
 					
 					CheckBox admin = new CheckBox("Administrador");
 					admin.setSelected(usuario.isAdmin());
@@ -539,23 +765,35 @@ public class GerenciarUsuarios implements Initializable {
 					
 					//--------------------------------
 					
-			        Label labelUsuario = new Label("Código do usuário: " + usuario.getId());
-			        Label labelNome = new Label("Editar nome de usuário:");
-			        Label labelSenha = new Label("Editar senha:");
+			        Label labelUsuario     = new Label("Código do usuário: " + usuario.getId());
+			        Label labelNome        = new Label("Editar nome de usuário:");
+			        Label labelSenha       = new Label("Editar senha:");
+			        Label labelCEP         = new Label("Insira o CEP (sem hífen):");
+			        Label labelComplemento = new Label("Complemento do endereço:");
+			        Label labelUnidade     = new Label("Número de residência:");
 			        
 			        labelUsuario.setFont(fonte);
 			        labelNome.setFont(fonte);
 			        labelSenha.setFont(fonte);
+			        labelCEP.setFont(fonte);
+			        labelComplemento.setFont(fonte);
+			        labelUnidade.setFont(fonte);
 			        
 			        //==============================
 			        // Adicionando componentes na janela de dialogo
 			        
-			        grid.add(labelUsuario, 0, 0);
-					grid.add(labelNome, 0, 1);
-					grid.add(nome, 0, 2, 2, 2);
-					grid.add(labelSenha, 0, 4);
-					grid.add(senha, 0, 5, 2, 5);
-					grid.add(hboxAdmin, 0, 11);
+			        grid.add(labelNome       , 0, 0);
+			        grid.add(nome            , 0, 1, 3, 1);
+			        grid.add(labelSenha      , 0, 2);
+			        grid.add(senha           , 0, 3, 3, 1);
+			        grid.add(labelCEP        , 0, 4);
+			        grid.add(cep             , 0, 5, 1, 1);
+			        grid.add(buttonValidarCep, 1, 5, 3, 1);
+			        grid.add(labelComplemento, 0, 6);
+			        grid.add(complemento     , 0, 7, 3, 1);
+			        grid.add(labelUnidade    , 0, 8);
+			        grid.add(unidade         , 0, 9, 3, 1);
+			        grid.add(hboxAdmin       , 0, 10, 3, 1);
 	
 					//==============================
 					
@@ -575,7 +813,7 @@ public class GerenciarUsuarios implements Initializable {
 								
 								// Remove qualquer caracter especial permitindo apenas letras maiusculas e minisculas
 								// caracteres numericos de 0 a 9 e espacos
-								nome.setText(nome.getText().replaceAll("[^a-zA-Z0-9\\u0020]", ""));
+								nome.setText(nome.getText().replaceAll("[^a-zA-Z\\u0020]", ""));
 								
 								// Quando houver espacos repetidos deixar apenas 1 espaco no lugar
 								nome.setText(nome.getText().replaceAll("\\u0020{2,}", " "));
@@ -588,7 +826,7 @@ public class GerenciarUsuarios implements Initializable {
 						}
 	
 						// Desabilita o botao se os campos estiverem vazios ou com entradas invalidas
-						buttonEdit.setDisable(this.senhaTxt || this.nomeTxt);
+						buttonEdit.setDisable(this.senhaTxt || this.nomeTxt || this.cepTxt || this.unidadeTxt);
 					});
 
 					//////////////////////////////////////////////////////////////////////////
@@ -599,9 +837,79 @@ public class GerenciarUsuarios implements Initializable {
 						this.senhaTxt = senha.getText().length() < 4 || senha.getText().length() > 20; 
 						
 						// Desabilita o botao se os campos estiverem vazios ou com entradas invalidas
-						buttonEdit.setDisable(this.senhaTxt || this.nomeTxt);
+						buttonEdit.setDisable(this.senhaTxt || this.nomeTxt || this.cepTxt || this.unidadeTxt);
 					});
 	
+					//////////////////////////////////////////////////////////////////////////
+										
+					cep.textProperty().addListener((observable, oldValue, newValue) -> {
+						
+						// booleano para saber se o CEP possui menos de 7 ou mais de 8 caracteres, bloqueando o botao 'cadastrar'
+						this.cepTxt = cep.getText().length() < 7;
+						
+						if (cep.getText().length() == 7 || 
+						cep.getText().length() == 8) buttonValidarCep.setDisable(false); 
+						
+						else buttonValidarCep.setDisable(true); 
+						
+						if (cep.getText().length() > 8) cep.setText(cep.getText().substring(0, 8));
+						
+						// Impede quaisquer caracteres diferentes de 0-9
+						cep.setText(cep.getText().replaceAll("[^0-9]", ""));
+						
+						// Desabilita o botao se os campos estiverem vazios ou com entradas invalidas
+						buttonEdit.setDisable(this.senhaTxt || this.nomeTxt || this.cepTxt || this.unidadeTxt);
+					});
+					
+					//////////////////////////////////////////////////////////////////////////
+					
+					unidade.textProperty().addListener((observable, oldValue, newValue) -> {
+					
+						// booleano para saber se a unidade possui menos de 1 ou mais de 4 caracteres, bloqueando o botao 'cadastrar'
+						this.unidadeTxt = unidade.getText().length() < 1;
+						if (unidade.getText().length() > 4) unidade.setText(unidade.getText().substring(0, 4));
+						
+						// Impede quaisquer caracteres diferentes de 0-9
+						unidade.setText(unidade.getText().replaceAll("[^0-9]", ""));
+						
+						// Desabilita o botao se os campos estiverem vazios ou com entradas invalidas
+						buttonEdit.setDisable(this.senhaTxt || this.nomeTxt || this.cepTxt || this.unidadeTxt);
+					});
+					
+					//////////////////////////////////////////////////////////////////////////
+					
+					//Evento do botao 'ValidarCep' que manda o cep informado para a AIP ValidaCEP
+					buttonValidarCep.setOnAction(new EventHandler<ActionEvent>() {
+					
+					public void handle(ActionEvent event) {
+					
+						try {
+							FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DadosCriarUsuario.fxml"), resources);
+							
+							Parent root = loader.load();
+							
+							// Manda o CEP para validação
+							DetalhesCriarUsuarios detalhes = loader.getController();
+							try {
+								detalhes.validar(cep.getText());
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+							
+							Stage stage = new Stage();
+							stage.setTitle("Dados do endereço");
+							stage.setScene(new Scene(root, 380, 360));
+							stage.getIcons().add(new Image(this.getClass().getResource("/icons/logo.png").toString()));
+							stage.setResizable(false);
+							stage.show();
+							//((Node) (event.getSource())).getScene().getWindow().hide();
+							
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						}
+					});
+					
 					//////////////////////////////////////////////////////////////////////////
 					
 					//Obtendo os dados entrados e fechando a janela de dialogo
@@ -620,6 +928,17 @@ public class GerenciarUsuarios implements Initializable {
 					    	novoUsuario.setSenha(senha.getText());
 					    	novoUsuario.setAdmin(admin.isSelected());
 					    	
+					    	Endereco endereco = new Endereco();
+							try {
+								endereco = ValidaCEP.buscaEnderecoPelo(cep.getText());
+								endereco.setComplemento(complemento.getText());
+								endereco.setUnidade(unidade.getText());
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+					    	
+							daoEnde.update(endereco);
+							
 					        return novoUsuario;
 					    }
 					    return null;
@@ -630,7 +949,7 @@ public class GerenciarUsuarios implements Initializable {
 					// Manda o requerimento para edicao no BD
 					result.ifPresent(usuarioEditado -> {
 						
-						// Valida se o novo material ja nao existe no BD
+						// Valida se o novo usuario ja nao existe no BD
 						Usuario usuarioModel = new Usuario();
 						List<Usuario> usuarioBD = dao.listar((Class<Usuario>) usuarioModel.getClass());
 						
@@ -702,6 +1021,15 @@ public class GerenciarUsuarios implements Initializable {
 	}
 	
 	/////////////////////////////////////////////////
+	/*
+	* preencherTabela(List<Material> list)
+	* Retorno: void
+	* Objetivo: Preenche a tabela com os itens selecionados da tabela de materiais
+	* Parâmetro de entrada:
+	* 			list: tipo Material (representa a lista de materias selecionados)
+	* Parâmetro de saida:
+	* 			tableViewMateriais.setItems(observableList) : tipo Tabela (seta os itens dentro da tabela)
+	*/
 	
 	public void preencherTabela(List<Usuario> list) {
 		
@@ -721,6 +1049,11 @@ public class GerenciarUsuarios implements Initializable {
 	}
 	
 	/////////////////////////////////////////////////
+	/*
+	desmarcarTudo()
+	Retorno: void
+	Objetivo: Desmarcar todas as opções de itens selecionados na tabela
+	*/
 	
 	public void desmarcarTudo() {
 		// Acao de'desmarcar tudo' 
@@ -728,13 +1061,20 @@ public class GerenciarUsuarios implements Initializable {
 		buttonDesmarcarTudo.setDisable(true);
 		buttonExcluir.setDisable(true);
 		buttonEditar.setDisable(true);
+		buttonDetalhes.setDisable(true);
 	}
 	
 	/////////////////////////////////////////////////
+	/*
+	habilitarbotoes()
+	retorno: void
+	objetivo: habilitar os botões quando um produto estiver selecionado na tabela
+	*/
 	
 	public void habilitarbotoes() {
 		buttonDesmarcarTudo.setDisable(false);
 		buttonExcluir.setDisable(false);
 		buttonEditar.setDisable(false);
+		buttonDetalhes.setDisable(false);
 	}
 }

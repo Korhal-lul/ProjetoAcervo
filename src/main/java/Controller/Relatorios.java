@@ -10,13 +10,13 @@
 *
 * Data: 06/08/2020
 * 
-* Classe de processamento e renderização da janela principal
+* Classe de renderização da janela de historico dos relatórios
 * 
 * ===============================
 * Alteração
 * 
 * Data: 06/08/2020
-* Responsável: Leonardo Cech
+* Responsável: Gabriel da Costa
 *
 * Documentação da Classe
 * -------------------------------------------------------
@@ -24,11 +24,26 @@
 * ================================
 * Declaração de variáveis
 * 
+* 	tableViewRelatorios	: TableView<Relatorio> Objeto de instância da tabela de materiais
+* tableColumnRelatorios	: TableColumn<Relatorio, String> Objeto de instância da tabela de relatorios
+* 
+* buttonSair			: Button Botão 'sair' fecha a janela atual e abre a janela 'menu'
+* buttonAbrirDiretorio	: Button Botão 'abrirDiretorio' abre o diretorio onde estão armazenados os relatorios
+* buttonDesmarcar		: Button Botão 'desmarcar' desmarca todos os relatorios selecionados
+* buttonExcluir			: Button Botão 'excluir' apaga os relatorios selecionados
+* buttonAbrir			: Button Botão 'abrir' abre os relatorios selecionados
+* buttonBuscar			: Button Botão 'buscar' pesquisa por um relatorio especifico
+* buttonDevolver		: Button Botão 'devolver' devolve os itens ao sistema e encerra o relatorio
+* textFieldBuscar		: TextField 
+* 
 * ================================
 */
 
 package Controller;
 
+//IMPORTAÇÕES DE BIBLIOTECAS
+
+//Importações de bibliotecas nativas do JAVA
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
@@ -90,7 +105,7 @@ public class Relatorios implements Initializable {
 	DaoMaterial dao;
 	DaoUsuarioLogado daoLog;
 	
-	// Auxiliares
+	// Arrays, objetos e variaveis auxiliares
 	List<Relatorio> relatoriosList = new ArrayList<>();
 	List<Relatorio> buscaList = new ArrayList<>();
 	Relatorio modelRelatorio = new Relatorio();
@@ -160,8 +175,7 @@ public class Relatorios implements Initializable {
 		
 		/////////////////////////////////////////////////
 		
-		// Evento do botao 'buscar' que busca e apresenta na tabela os resultados de acordo
-		// com a informação informada
+		// Evento do botao 'buscar' que busca e apresenta na tabela os resultados de acordo com o que for solicitado
 		buttonBuscar.setTooltip(new Tooltip("Buscar por relatórios"));
 		buttonBuscar.setFont(new Font("Calibri", 16));
 		buttonBuscar.setDisable(true);
@@ -284,7 +298,7 @@ public class Relatorios implements Initializable {
 		
 		/////////////////////////////////////////////////
 		
-		// Evento do botao 'Marcar como devolvido' que atualiza o BD com os materiais devolv
+		// Evento do botao 'Marcar como devolvido' que atualiza o BD com os materiais devolvidos
 		buttonDevolver.setTooltip(new Tooltip("Marcar relatório selecionado como devolvido"));
 		buttonDevolver.setFont(new Font("Calibri", 16));
 		buttonDevolver.setOnAction(new EventHandler<ActionEvent>() {
@@ -320,10 +334,17 @@ public class Relatorios implements Initializable {
 	
 	/////////////////////////////////////////////////
 	
+	/*
+	getCaminhos()
+	retorno: list (List<Relatorio>)
+	objetivo: define o diretorio dos relatorios
+	*/
 	public List<Relatorio> getCaminhos(List<Relatorio> list) {
 		
 		// Mostra caminhos dos arquivos do diretorio
-		File directory = new File("resources/relatorios/");
+		File directory = new File("relatorios\\");
+		if (!directory.exists()) { directory.mkdirs(); }
+		
 		File[] contents = directory.listFiles();
 		
 		for ( File f : contents) {
@@ -346,6 +367,11 @@ public class Relatorios implements Initializable {
 	
 	/////////////////////////////////////////////////
 	
+	/*
+	preencherTabela()
+	retorno: void
+	objetivo: preencher a lista com os produtos emprestados
+	*/
 	public void preencherTabela(List<Relatorio> list) {
 			
 		ObservableList<Relatorio> observableList = FXCollections.observableArrayList(list);
@@ -365,6 +391,11 @@ public class Relatorios implements Initializable {
 	
 	/////////////////////////////////////////////////
 	
+	/*
+	getUsuario()
+	retorno: UsuarioLogado
+	objetivo: retorna as informacoes do usuario
+	*/
 	@SuppressWarnings("unchecked")
 	public UsuarioLogado getUsuario() {
 	    
@@ -378,6 +409,11 @@ public class Relatorios implements Initializable {
 	
 	/////////////////////////////////////////////////
 	
+	/*
+	desmarcarTudo()
+	retorno: void
+	objetivo: desmarca todas as linhas
+	*/
 	public void desmarcarTudo() {
 		// Acao de'desmarcar tudo' 
 		tableViewRelatorios.getSelectionModel().clearSelection();
@@ -389,6 +425,11 @@ public class Relatorios implements Initializable {
 	
 	/////////////////////////////////////////////////
 	
+	/*
+	habilitarbotoes()
+	retorno: void
+	objetivo: habilitar os botões quando um produto estiver selecionado na tabela
+	*/
 	public void habilitarbotoes() {
 		buttonDesmarcar.setDisable(false);
 		buttonExcluir.setDisable(false);
@@ -399,6 +440,11 @@ public class Relatorios implements Initializable {
 	
 	/////////////////////////////////////////////////
 	
+	/*
+	lerArquivo()
+	retorno: void
+	objetivo: responsavel por ler os arquivos .xls gerados anteriormente
+	*/
 	@SuppressWarnings("unchecked")
 	public void lerArquivo(String arquivo) throws IOException{
 		

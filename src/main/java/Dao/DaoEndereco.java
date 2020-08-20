@@ -33,7 +33,7 @@
 
 package Dao;
 
-import Model.Usuario;
+import Model.Endereco;
 
 import java.util.List;
 
@@ -45,16 +45,16 @@ import java.util.List;
  * receber dados do MySQL
  * */
 
-public class DaoUsuario {
+public class DaoEndereco {
 
     // Cria o Objeto dao para realizar chamadas de metodos genericos
-    public DaoGeneric<Usuario> dao = new DaoGeneric<>();
+    public DaoGeneric<Endereco> dao = new DaoGeneric<>();
 
     /*
      * Nome da Função: select Retorno: Usuario Objetivo: Listagem do banco de dados
      */
 
-    public Usuario select(int id, Class<Usuario> entity) {
+    public Endereco select(int id, Class<Endereco> entity) {
         return dao.select(id, entity);
     }
 
@@ -65,7 +65,7 @@ public class DaoUsuario {
      */
 
     // Metodo INSERT do MySQL
-    public void insert(Usuario objeto) {
+    public void insert(Endereco objeto) {
         dao.insert(objeto);
     }
 
@@ -76,16 +76,18 @@ public class DaoUsuario {
      * respectivos ao requerido ID e manda o objeto com as novas informacoes ao BD
      */
 
-    public void update(Usuario usuarioOld) {
+    public void update(Endereco enderecoOld) {
 
         @SuppressWarnings("unchecked")
-        Usuario usuarioNew = dao.select(usuarioOld.getId(), (Class<Usuario>) usuarioOld.getClass());
+        Endereco enderecoNew = dao.select(enderecoOld.getId(), (Class<Endereco>) enderecoOld.getClass());
 
-        usuarioNew.setNome(usuarioOld.getNome());
-        usuarioNew.setSenha(usuarioOld.getSenha());
-        usuarioNew.setAdmin(usuarioOld.isAdmin());
+        enderecoNew.setCep(enderecoOld.getCep());
+        enderecoNew.setLogradouro(enderecoOld.getLogradouro());
+        enderecoNew.setComplemento(enderecoOld.getComplemento());
+        enderecoNew.setLocalidade(enderecoOld.getLocalidade());
+        enderecoNew.setUnidade(enderecoOld.getUnidade());
 
-        dao.update(usuarioNew);
+        dao.update(enderecoNew);
     }
 
     /*
@@ -95,12 +97,11 @@ public class DaoUsuario {
      */
 
     @SuppressWarnings("unchecked")
-    public void delete(Usuario usuarios, int id) {
+    public void delete(Endereco enderecos, int id) {
 
-        usuarios = dao.select(id, (Class<Usuario>) usuarios.getClass());
-        dao.delete(usuarios);
+        enderecos = dao.select(id, (Class<Endereco>) enderecos.getClass());
+        dao.delete(enderecos);
     }
-
 
     /*
      * Nome da Função: listar
@@ -108,7 +109,7 @@ public class DaoUsuario {
      * Objetivo: listar dados que sera chamado na TableView do JavaFX
      */
 
-    public List<Usuario> listar(Class<Usuario> usuarios) {
+    public List<Endereco> listar(Class<Endereco> usuarios) {
         return dao.listar(usuarios);
     }
     /*
@@ -117,7 +118,7 @@ public class DaoUsuario {
      * Objetivo: Metodo de busca que retorna uma lista com os resultados requeridos
      */
 
-    public List<Usuario> buscar(Class<Usuario> usuarios, String buscado) {
-        return dao.buscar(usuarios, "nome", buscado);
+    public List<Endereco> buscar(Class<Endereco> enderecos, String buscado) {
+        return dao.buscar(enderecos, "nome", buscado);
     }
 }

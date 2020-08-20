@@ -61,7 +61,7 @@ public class DatabaseExcel {
 	static DaoUsuarioLogado daoLog;
 	
 	private static UsuarioLogado usuario = getUsuario();
-	private static String directory = "resources\\relatorios\\";
+	private static String directory = "relatorios\\";
 	private static String fileName;
 
 	/////////////////////////////////////////////////

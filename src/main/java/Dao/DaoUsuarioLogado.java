@@ -1,4 +1,38 @@
+/*
+* SENAI / CENTROWEG
+* AIPSIN 2019/1
+* MI-66
+* Autor(es): Daniel Schinaider de Oliveira, 
+* 	         Victor Hugo Moresco,
+* 		   	 Braian Costa Zapelini, 
+*            Leonardo Cech, 
+* 	         Gabriel da Costa 
+*
+* Data: 06/08/2020
+* 
+* Classe de processamento e renderização da janela principal
+* 
+* ===============================
+* Alteração
+* 
+* Data: 06/08/2020
+* Responsável: Leonardo Cech
+*
+* Documentação da Classe
+* -------------------------------------------------------
+*
+* Data: 06/08/2020
+* Responsável: Braian Costa Zapelini
+*
+* ================================
+* Declaração de variáveis
+* dao : DaoGeneric<UsuarioLogado> Objeto dao para realizar chamadas de metodos genericos
+* ================================
+*/
+
 package Dao;
+
+// IMPORTAÇÕES DE BIBLIOTECAS
 
 import Model.UsuarioLogado;
 
@@ -12,15 +46,32 @@ import Model.UsuarioLogado;
 
 public class DaoUsuarioLogado {
 
-	// Cria o Objeto dao para realizar chamadas de metodos genericos
     public DaoGeneric<UsuarioLogado> dao = new DaoGeneric<>();
 
-    // Obtem o usuario logado
+	/////////////////////////////////////////////////
+	/*
+	select (Class<UsuarioLogado> entity)
+	retorno: UsuarioLogado
+	objetivo: Obtem o usuario logado
+	*/
+    
     public UsuarioLogado select (Class<UsuarioLogado> entity) { return dao.selectUsuarioLogado(entity); }
 
-    // Definir usuario logado em cada sessao
-    public void insert (UsuarioLogado objeto) { dao.insert(objeto); }
+	/////////////////////////////////////////////////
+	/*
+	insert (UsuarioLogado objeto)
+	retorno: void
+	objetivo: Definir usuario logado em cada sessao
+	*/
 
-    // remover o usuario logado para nova sessao
+    public void insert (UsuarioLogado objeto) { dao.insert(objeto); }
+    
+	/////////////////////////////////////////////////
+	/*
+	delete()
+	retorno: void
+	objetivo: Remover o usuario logado para nova sessao
+	*/
+
 	public void delete() { dao.deleteUsuarioLogado(); }
 }

@@ -10,7 +10,7 @@
 *
 * Data: 06/08/2020
 * 
-* Classe de processamento e renderização da janela principal
+* Classe de login do usuário no sistema
 * 
 * ===============================
 * Alteração
@@ -20,14 +20,21 @@
 *
 * Documentação da Classe
 * -------------------------------------------------------
-*
+* 
+* Data: 06/08/2020
+* Responsável: Braian Costa Zapelini
+* 
 * ================================
 * Declaração de variáveis
-* 
+* textFieldUsuario : TextField 
+* textFieldSenha : TextField
+* buttonEntrar : Button Botão 'entrar' permite ao usuário sua entrada para a página principal do sistema caso não ocorra nenhum erro
 * ================================
 */
 
 package Controller;
+
+// IMPORTAÇÕES DE BIBLIOTECAS
 
 import Model.Usuario;
 import Model.UsuarioLogado;
@@ -56,6 +63,7 @@ import java.util.ResourceBundle;
 import Dao.DaoUsuario;
 import Dao.DaoUsuarioLogado;
 
+@SuppressWarnings("restriction")
 public class Login implements Initializable {
 
 	// Declaracao dos componente utilizados na janela
@@ -101,6 +109,9 @@ public class Login implements Initializable {
     		textFieldUsuario.setText(textFieldUsuario.getText().toUpperCase());
     	});
     		
+    	
+    	textFieldUsuario.setText("ADMIN");
+    	textFieldSenha.setText("AcervoAdmin2020");
     	/////////////////////////////////////////////////	
     	
     	// O botao 'Entrar' verifica se o usuario e senha informados nos campos
@@ -193,8 +204,12 @@ public class Login implements Initializable {
     }
 
     /////////////////////////////////////////////////
+    /*
+	setUsuario(UsuarioLogado usuarioLogado)
+	retorno: void
+	objetivo: Define o usuário logado na sessão
+	*/
     
-    // Define o usuario logado na sessao
 	public void setUsuario(UsuarioLogado usuarioLogado) {
    
     	daoLog = new DaoUsuarioLogado();
