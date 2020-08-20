@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="377.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DetalhesCriarUsuarios">
+    <children>
+      <Button fx:id="buttonFechar" onAction="#handleCloseButtonAction" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="84.0" style="-fx-background-image: url(/icons/voltar.png)" />
+      
+      <Label layoutX="75.0" layoutY="64.0" prefHeight="44.0" prefWidth="34.0" text="CEP: " wrapText="true">
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="240.0" prefHeight="44.0" prefWidth="84.0" text="Logradouro: " wrapText="true">
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="152.0" prefHeight="44.0" prefWidth="49.0" text="Bairro:" wrapText="true">
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="196.0" prefHeight="44.0" prefWidth="78.0" text="Localidade: " wrapText="true">
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="86.0" layoutY="108.0" prefHeight="44.0" prefWidth="25.0" text="UF:" wrapText="true">
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+      </Label>
+      
+      <Label layoutX="41.0" layoutY="294.0" prefHeight="52.0" prefWidth="319.0" text="*Caso os dados fornecidos estejam incorretos, revise o CEP" wrapText="true">
+         <font>
+         	<Font name="Calibri" size="16.0" />
+         </font>
+      </Label>
+      
+      <TextField fx:id="cepCriarTF"        editable="false" layoutX="116.0" layoutY="69.0" prefHeight="34.0" prefWidth="228.0" />
+      <TextField fx:id="ufCriarTF"         editable="false" layoutX="116.0" layoutY="113.0" prefHeight="34.0" prefWidth="228.0" />
+      <TextField fx:id="bairroCriarTF"     editable="false" layoutX="116.0" layoutY="157.0" prefHeight="34.0" prefWidth="228.0" />
+      <TextField fx:id="localidadeCriarTF" editable="false" layoutX="116.0" layoutY="201.0" prefHeight="34.0" prefWidth="228.0" />
+      <TextField fx:id="logradouroCriarTF" editable="false" layoutX="116.0" layoutY="245.0" prefHeight="34.0" prefWidth="228.0" />
+      
+    </children>
+</AnchorPane>
