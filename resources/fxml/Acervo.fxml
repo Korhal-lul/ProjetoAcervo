@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Acervo">
+<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #21252b;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Acervo">
     <children>
-        <Button fx:id="buttonSair" layoutX="48.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #ffd6d6; -fx-background-image: url(/icons/sair.png)"/>
+        <Button fx:id="buttonSair" layoutX="48.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #ffd6d6; -fx-background-image: url(/icons/sair.png)" />
         
-        <Button fx:id="buttonCadastrarMaterial" visible="false" layoutX="300.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-image: url(/icons/criar_material.png)"/>
-        <Button fx:id="buttonUsuario" visible="false" layoutX="344.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-image: url(/icons/usuario.png)"/>
-        <Button fx:id="buttonRelatorios" layoutX="388.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-image: url(/icons/relatorio.png)"/>
-        <Button fx:id="buttonQrCode" layoutX="432.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="84.0" style="-fx-background-image: url(/icons/QRcode.png)"/>
-        <Button fx:id="buttonEmprestar" disable="true" layoutX="540.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="111.0" text="Emprestar" style="-fx-background-color: #adffc3; ">
+        <Button fx:id="buttonCadastrarMaterial" layoutX="300.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-image: url(/icons/criar_material.png)" visible="false" />
+        <Button fx:id="buttonUsuario" layoutX="344.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-image: url(/icons/usuario.png)" visible="false" />
+        <Button fx:id="buttonRelatorios" layoutX="388.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-image: url(/icons/relatorio.png)" />
+        <Button fx:id="buttonQrCode" layoutX="432.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="84.0" style="-fx-background-image: url(/icons/QRcode.png)" />
+        <Button fx:id="buttonEmprestar" disable="true" layoutX="540.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="111.0" style="-fx-background-color: #adffc3; " text="Emprestar">
             <font>
                 <Font name="Calibri" size="16.0" />
             </font>
@@ -32,31 +37,31 @@
                 </TableView>
             </content>
         </ScrollPane>
-        <Label layoutX="53.0" layoutY="93.0" prefHeight="26.0" prefWidth="462.0" text="Selecione na tabela os itens que deseja emprestar:">
+        <Label layoutX="48.0" layoutY="77.0" prefHeight="45.0" prefWidth="390.0" text="Selecione na tabela os itens que deseja emprestar:" textFill="#e7f2ff">
             <font>
                 <Font name="Calibri" size="18.0" />
             </font>
         </Label>
-        <Label fx:id="labelUsuario" alignment="CENTER" layoutX="53.0" layoutY="67.0" text="Olá, ">
+        <Label fx:id="labelUsuario" alignment="CENTER" layoutX="48.0" layoutY="55.0" text="Olá, " textFill="#e7f2ff">
             <font>
                 <Font name="Calibri" size="18.0" />
             </font>
         </Label>
         <Button fx:id="buttonDesmarcarTudo" disable="true" layoutX="514.0" layoutY="450.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="137.0" text="Desmarcar tudo" />
-        <Label layoutX="48.0" layoutY="440.0" prefHeight="52.0" prefWidth="322.0" text="*Pressione a tecla Ctrl ao selecionar para marcar mais de uma linha" wrapText="true">
+        <Label layoutX="48.0" layoutY="440.0" prefHeight="52.0" prefWidth="322.0" text="*Pressione a tecla Ctrl ao selecionar para marcar mais de uma linha" textFill="#e7f2ff" wrapText="true">
             <font>
                 <Font name="Calibri" size="16.0" />
             </font>
         </Label>
-      <Button fx:id="buttonExcluir" visible="false" disable="true" layoutX="426.0" layoutY="450.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: #ff9e9e; -fx-background-image: url(/icons/excluir.png)"/>
-      <Button fx:id="buttonEditar" visible="false" disable="true" layoutX="470.0" layoutY="450.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: #a3b1ff; -fx-background-image: url(/icons/editar.png)"/>
+      <Button fx:id="buttonExcluir" disable="true" layoutX="426.0" layoutY="450.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: #ff9e9e; -fx-background-image: url(/icons/excluir.png)" visible="false" />
+      <Button fx:id="buttonEditar" disable="true" layoutX="470.0" layoutY="450.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: #a3b1ff; -fx-background-image: url(/icons/editar.png)" visible="false" />
      
-	  <TextField fx:id="textFieldBuscar" layoutX="440.0" layoutY="85.0" prefHeight="34.0" prefWidth="166.0" promptText="Buscar por descrição">
+	  <TextField fx:id="textFieldBuscar" layoutX="440.0" layoutY="85.0" prefHeight="34.0" prefWidth="166.0" promptText="Buscar por descrição" style="-fx-background-color: #2c313c; -fx-text-inner-color: #bbbbbb;">
          <font>
             <Font name="Calibri" size="16.0" />
          </font>
       </TextField>
-      <Button fx:id="buttonBuscar" layoutX="619.0" layoutY="85.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-image: url(/icons/busca.png)">
+      <Button fx:id="buttonBuscar" layoutX="619.0" layoutY="85.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-image: url(/icons/busca.png); -fx-background-color: #21252b;">
      	 <font>
             <Font name="Calibri" size="16.0" />
          </font>

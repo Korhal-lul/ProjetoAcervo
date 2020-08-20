@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+  
     @Column(nullable = false)
     private int id;
 
@@ -28,6 +29,8 @@ public class Endereco {
     }
 
     public void setId(int id) {
+
+ 
         this.id = id;
     }
 
