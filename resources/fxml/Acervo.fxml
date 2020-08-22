@@ -57,8 +57,8 @@
                 <Font name="Calibri" size="16.0" />
             </font>
         </Label>
-      <Button fx:id="buttonExcluir" disable="true" layoutX="426.0" layoutY="450.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: #ff9e9e; -fx-background-image: url(/icons/excluir.png)" visible="false" />
-      <Button fx:id="buttonEditar" disable="true" layoutX="470.0" layoutY="450.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: #a3b1ff; -fx-background-image: url(/icons/editar.png)" visible="false" />
+      <Button fx:id="buttonExcluir" disable="true" layoutX="426.0" layoutY="450.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" visible="false" />
+      <Button fx:id="buttonEditar" disable="true" layoutX="470.0" layoutY="450.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" visible="false" />
      
 	  <TextField fx:id="textFieldBuscar" layoutX="443.0" layoutY="90.0" prefHeight="34.0" prefWidth="166.0" promptText="Buscar por descrição" style="-fx-background-color: #2c313c; -fx-text-inner-color: #bbbbbb;">
          <font>

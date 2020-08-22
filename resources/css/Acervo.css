@@ -8,7 +8,7 @@
     -fx-background-color:  #414855; 
 }
 
-.table-view .column-header-background .label{
+.table-view .column-header-background .label {
     -fx-text-fill: #03dac5;
 }
 
@@ -72,10 +72,47 @@
     -fx-background-color: transparent;
 }
 
+#buttonEmprestar:hover{
+    -fx-background-color: #01a299;
+}
+
 #buttonEmprestar {
-	-fx-text-fill: black;
+	-fx-text-fill: #282c34;
 	-fx-font-size: 15px;
-    -fx-background-color: #3bea62;
+    -fx-background-color: #00c4b4;
   	-fx-font-weight: bold;
   	-fx-border-radius: 5px;
+}
+
+#buttonExcluir:disabled {
+    -fx-background-color: transparent;
+}
+
+#buttonExcluir{
+	-fx-background-image: url(/icons/excluir.png);
+    -fx-background-color: #cf6679;
+}
+
+#buttonEditar:disabled {
+    -fx-background-color: transparent;
+}
+
+#buttonEditar {
+	-fx-background-image: url(/icons/editar.png);
+    -fx-background-color: #1484f3;
+}
+
+#buttonDesmarcarTudo:disabled {
+    -fx-background-color: transparent;
+}
+
+#buttonDesmarcarTudo:hover{
+    -fx-text-fill: #6494ed;
+}
+
+#buttonDesmarcarTudo {
+  	-fx-font-weight: bold;
+    -fx-background-color: #323844;
+	-fx-font-size: 15px;
+    -fx-text-fill: #d7dae0;
 }
