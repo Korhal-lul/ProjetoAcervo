@@ -18,7 +18,7 @@
             <Font name="Trebuchet MS" size="37.0" />
          </font>
       </Label>
-      <Label layoutX="25.0" layoutY="215.0" style="-fx-font-style: white;" text="Nome de usuário:" textFill="#e7f2ff">
+      <Label layoutX="25.0" layoutY="215.0" style="font-color: white;" text="Nome de usuário:" textFill="#e7f2ff">
          <font>
             <Font name="Calibri" size="20.0" />
          </font></Label>

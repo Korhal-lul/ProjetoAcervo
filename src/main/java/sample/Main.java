@@ -52,7 +52,8 @@ public class Main extends Application {
         // Chamada para renderizacao da janela de login
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
         primaryStage.setTitle("Projeto Acervo");
-        primaryStage.setScene(new Scene(root, 400, 500));
+        Scene newScene = new Scene(root, 400, 500);
+        primaryStage.setScene(newScene);
         primaryStage.setResizable(false);
         primaryStage.getIcons().add(new Image(this.getClass().getResource("/icons/logo.png").toString()));
         primaryStage.show();

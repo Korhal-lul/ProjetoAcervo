@@ -1,0 +1,81 @@
+.table-view{
+    -fx-background-color: #21252b;
+    -fx-font-size: 15px;
+}
+
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-background-color:  #414855; 
+}
+
+.table-view .column-header-background .label{
+    -fx-text-fill: #03dac5;
+}
+
+.table-row-cell{
+    -fx-background-color: #282c34;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; /* 0 */
+	-fx-table-cell-border-color: transparent;
+}
+
+.table-row-cell .text{
+    -fx-fill: #5c6370;
+}
+
+.table-row-cell:hover .text{
+    -fx-fill: #d7dae0;
+}
+
+.table-row-cell:selected .text{
+    -fx-fill: #d7dae0;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #323844;
+    -fx-background-insets: 0, 0 0 1 0;
+  	-fx-font-weight: bold;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #4287c7;
+    -fx-text-fill: #d7dae0;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1;
+}
+
+#paneColor{
+	-fx-background-color: #3d424b;	
+}
+
+#buttonSair{
+    -fx-background-color: transparent;
+}
+
+#buttonSair:hover{
+    -fx-background-color: #ef596f;
+}
+
+#buttonCadastrarMaterial {
+    -fx-background-color: transparent;
+}
+
+#buttonUsuario {
+    -fx-background-color: transparent;
+}
+
+#buttonRelatorios {
+    -fx-background-color: transparent;
+}
+
+#buttonQrCode {
+    -fx-background-color: transparent;
+}
+
+#buttonEmprestar {
+	-fx-text-fill: black;
+	-fx-font-size: 15px;
+    -fx-background-color: #3bea62;
+  	-fx-font-weight: bold;
+  	-fx-border-radius: 5px;
+}
